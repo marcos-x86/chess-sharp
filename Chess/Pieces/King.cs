@@ -16,74 +16,55 @@
 
 
             pos.SetValues(Position.Row - 1, Position.Column);
-            if (Board.IsValidPosition(pos) && CanMove(pos)) mat[pos.Row, pos.Column] = true;
+            if (Board.IsValidPosition(pos) && CanMove(pos))
+                mat[pos.Row, pos.Column] = true;
 
 
             pos.SetValues(Position.Row - 1, Position.Column + 1);
-            if (Board.IsValidPosition(pos) && CanMove(pos)) mat[pos.Row, pos.Column] = true;
+            if (Board.IsValidPosition(pos) && CanMove(pos))
+                mat[pos.Row, pos.Column] = true;
 
 
             pos.SetValues(Position.Row, Position.Column + 1);
-            if (Board.IsValidPosition(pos) && CanMove(pos)) mat[pos.Row, pos.Column] = true;
+            if (Board.IsValidPosition(pos) && CanMove(pos))
+                mat[pos.Row, pos.Column] = true;
 
 
             pos.SetValues(Position.Row + 1, Position.Column + 1);
-            if (Board.IsValidPosition(pos) && CanMove(pos)) mat[pos.Row, pos.Column] = true;
+            if (Board.IsValidPosition(pos) && CanMove(pos))
+                mat[pos.Row, pos.Column] = true;
 
 
             pos.SetValues(Position.Row + 1, Position.Column);
-            if (Board.IsValidPosition(pos) && CanMove(pos)) mat[pos.Row, pos.Column] = true;
+            if (Board.IsValidPosition(pos) && CanMove(pos))
+                mat[pos.Row, pos.Column] = true;
 
 
             pos.SetValues(Position.Row + 1, Position.Column - 1);
-            if (Board.IsValidPosition(pos) && CanMove(pos)) mat[pos.Row, pos.Column] = true;
+            if (Board.IsValidPosition(pos) && CanMove(pos))
+                mat[pos.Row, pos.Column] = true;
 
 
             pos.SetValues(Position.Row, Position.Column - 1);
-            if (Board.IsValidPosition(pos) && CanMove(pos)) mat[pos.Row, pos.Column] = true;
+            if (Board.IsValidPosition(pos) && CanMove(pos))
+                mat[pos.Row, pos.Column] = true;
 
 
             pos.SetValues(Position.Row - 1, Position.Column - 1);
-            if (Board.IsValidPosition(pos) && CanMove(pos)) mat[pos.Row, pos.Column] = true;
-
-            Castling(mat);
-
+            if (Board.IsValidPosition(pos) && CanMove(pos))
+                mat[pos.Row, pos.Column] = true;
+            EvaluateCastling(mat);
             return mat;
         }
 
-        public void Castling(bool[,] mat)
+        public void EvaluateCastling(bool[,] mat)
         {
-            if (Movements == 0 && !_game.Status.Equals(GameStatus.Check))
-            {
-                var posR1 = new Position(Position.Row, Position.Column + 3);
-                if (CastlingTest(posR1))
-                {
-                    var p1 = new Position(Position.Row, Position.Column + 1);
-                    var p2 = new Position(Position.Row, Position.Column + 2);
-                    if (Board.GetPiece(p1) == null && Board.GetPiece(p2) == null)
-                        mat[Position.Row, Position.Column + 2] = true;
-                }
-
-                var posR2 = new Position(Position.Row, Position.Column - 4);
-                if (CastlingTest(posR2))
-                {
-                    var p1 = new Position(Position.Row, Position.Column - 1);
-                    var p2 = new Position(Position.Row, Position.Column - 2);
-                    var p3 = new Position(Position.Row, Position.Column - 3);
-                    if (Board.GetPiece(p1) == null && Board.GetPiece(p2) == null && Board.GetPiece(p3) == null)
-                        mat[Position.Row, Position.Column - 2] = true;
-                }
-            }
+            throw new System.NotImplementedException();
         }
 
         public override string ToString()
         {
             return "K";
-        }
-
-        public void CheckKing()
-        {
-            throw new System.NotImplementedException();
         }
 
         private bool CanMove(Position pos)
@@ -94,8 +75,8 @@
 
         private bool CastlingTest(Position pos)
         {
-            var p = Board.GetPiece(pos);
-            return p != null && p is Rook && p.Color == Color && p.Movements == 0;
+            var piece = Board.GetPiece(pos);
+            return piece is Rook && piece.Color == Color && piece.Movements == 0;
         }
     }
 }

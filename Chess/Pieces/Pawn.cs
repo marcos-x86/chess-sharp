@@ -29,7 +29,8 @@
             if (Color == Match.Player1.Color)
             {
                 pos.SetValues(Position.Row - 1, Position.Column);
-                if (Board.IsValidPosition(pos) && Free(pos)) mat[pos.Row, pos.Column] = true;
+                if (Board.IsValidPosition(pos) && Free(pos))
+                    mat[pos.Row, pos.Column] = true;
 
                 pos.SetValues(Position.Row - 2, Position.Column);
                 var p2 = new Position(Position.Row - 1, Position.Column);
@@ -37,10 +38,12 @@
                     Movements == 0) mat[pos.Row, pos.Column] = true;
 
                 pos.SetValues(Position.Row - 1, Position.Column - 1);
-                if (Board.IsValidPosition(pos) && IsThereEnemy(pos)) mat[pos.Row, pos.Column] = true;
+                if (Board.IsValidPosition(pos) && IsThereEnemy(pos))
+                    mat[pos.Row, pos.Column] = true;
 
                 pos.SetValues(Position.Row - 1, Position.Column + 1);
-                if (Board.IsValidPosition(pos) && IsThereEnemy(pos)) mat[pos.Row, pos.Column] = true;
+                if (Board.IsValidPosition(pos) && IsThereEnemy(pos))
+                    mat[pos.Row, pos.Column] = true;
 
                 if (Position.Row == 3)
                 {
@@ -57,7 +60,8 @@
             else
             {
                 pos.SetValues(Position.Row + 1, Position.Column);
-                if (Board.IsValidPosition(pos) && Free(pos)) mat[pos.Row, pos.Column] = true;
+                if (Board.IsValidPosition(pos) && Free(pos))
+                    mat[pos.Row, pos.Column] = true;
 
                 pos.SetValues(Position.Row + 2, Position.Column);
                 var p2 = new Position(Position.Row + 1, Position.Column);
@@ -65,10 +69,12 @@
                     Movements == 0) mat[pos.Row, pos.Column] = true;
 
                 pos.SetValues(Position.Row + 1, Position.Column - 1);
-                if (Board.IsValidPosition(pos) && IsThereEnemy(pos)) mat[pos.Row, pos.Column] = true;
+                if (Board.IsValidPosition(pos) && IsThereEnemy(pos))
+                    mat[pos.Row, pos.Column] = true;
 
                 pos.SetValues(Position.Row + 1, Position.Column + 1);
-                if (Board.IsValidPosition(pos) && IsThereEnemy(pos)) mat[pos.Row, pos.Column] = true;
+                if (Board.IsValidPosition(pos) && IsThereEnemy(pos))
+                    mat[pos.Row, pos.Column] = true;
             }
 
             return mat;

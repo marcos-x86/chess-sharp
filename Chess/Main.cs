@@ -1,6 +1,7 @@
 ﻿using Chess.Pieces;
 using System;
 using Chess.Throwables;
+using Chess.Util;
 
 namespace Chess
 {
@@ -53,7 +54,7 @@ namespace Chess
                         var input = Console.ReadLine();
                         CheckGameToBeReset(input, game, player1, player2);
                         var origin = BoardUtils.ParsePosition(input);
-                        game.CheckOriginPosition(origin);
+                        game.CheckPieceInPosition(origin);
                         var possiblePositions = game.Board.GetPiece(origin).GetAvailablePositions();
                         Console.Clear();
                         BoardUtils.PrintBoardWithPositions(game.Board, possiblePositions);
@@ -62,7 +63,7 @@ namespace Chess
                         CheckGameToBeReset(inputDestiny, game, player1, player2);
                         var destination = BoardUtils.ParsePosition(inputDestiny);
                         game.ValidadeDestinationPosition(origin, destination);
-                        game.MakeThePlay(origin, destination);
+                        game.Move(origin, destination);
                     }
                     catch (ChessException e)
                     {
@@ -124,7 +125,7 @@ namespace Chess
             Console.WriteLine("2 - White");
             var colorOption = Console.ReadLine();
             var colorPlayer1 = GetColorFromString(colorOption);
-            return new Player(namePlayer1, colorPlayer1);
+            return new Player(namePlayer1, colorPlayer1, BoardPosition.Lower);
         }
 
         private static Player PrintSetupPlayer2(Player player)
@@ -134,7 +135,7 @@ namespace Chess
             var namePlayer2 = Console.ReadLine();
             var colorPlayer2 = GetOppositeColor(player.Color);
             Console.WriteLine($"Setting opposite color for player 2: ${colorPlayer2}");
-            return new Player(namePlayer2, colorPlayer2);
+            return new Player(namePlayer2, colorPlayer2, BoardPosition.Upper);
         }
 
         private static Color GetColorFromString(string option)

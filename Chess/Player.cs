@@ -9,11 +9,13 @@ namespace Chess
     {
         public string Name { get; }
         public Color Color { get; }
+        public BoardPosition BoardPosition { get; set; }
 
-        public Player(string name, Color color)
+        public Player(string name, Color color, BoardPosition boardPosition)
         {
             Name = name;
             Color = color;
+            BoardPosition = boardPosition;
         }
     }
 }

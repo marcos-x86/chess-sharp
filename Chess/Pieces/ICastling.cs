@@ -2,6 +2,6 @@
 {
     public interface ICastling
     {
-        public void EvaluateCastling(bool[,] mat);
+        public void Castle();
     }
 }

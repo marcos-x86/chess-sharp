@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using Chess.Throwables;
 
-namespace Chess
+namespace Chess.Util
 {
-    public class BoardUtils
+    public static class BoardUtils
     {
         private const int InitialIndex = 8;
 
@@ -18,13 +18,9 @@ namespace Chess
                 case GameStatus.Active:
                 {
                     if (game.CurrentColorTurn.Equals(game.Player1.Color))
-                    {
                         Console.WriteLine("Waiting for player 1: " + game.Player1.Name);
-                    }
                     else
-                    {
                         Console.WriteLine("Waiting for player 2: " + game.Player2.Name);
-                    }
 
                     break;
                 }
@@ -100,15 +96,7 @@ namespace Chess
             }
             else
             {
-                if (piece.Color == Color.White)
-                {
-                    Console.Write(piece + "W");
-                }
-                else
-                {
-                    Console.Write(piece + "B");
-                }
-
+                Console.Write(piece);
                 Console.Write(" ");
             }
         }
@@ -134,7 +122,7 @@ namespace Chess
             else
             {
                 Console.Write(match.Player2.Name + ": ");
-                Console.WriteLine(string.Join(", ", match.TakenPieces(match.Player2.Color)));                
+                Console.WriteLine(string.Join(", ", match.TakenPieces(match.Player2.Color)));
             }
         }
     }

@@ -1,48 +1,30 @@
-﻿namespace Chess.Pieces
+﻿using Chess.Pieces.Validators;
+
+namespace Chess.Pieces
 {
     public abstract class Piece
     {
         public Position Position { get; set; }
-        public Color Color { get; }
-        public int Movements { get; private set; }
-        protected Board Board { get; }
+        protected bool IsFirstMovement { get; private set; }
+        public Validator Validator { get; protected set; }
+        public Player Player { get; }
 
-        protected Piece(Color color, Board board)
+        protected Piece(Player player, Validator validator)
         {
             Position = null;
-            Color = color;
-            Board = board;
-            Movements = 0;
+            Player = player;
+            IsFirstMovement = true;
+            validator.Player = Player;
+            validator.Position = Position;
+            validator.IsFirstMovement = IsFirstMovement;
+            Validator = validator;
         }
 
         public abstract bool[,] GetAvailablePositions();
 
-        public void IncreaseMovCounter()
+        public void SetPieceMovementFlag()
         {
-            Movements++;
-        }
-
-        public void DecreaseMovCounter()
-        {
-            Movements--;
-        }
-        
-        public bool CanMoveTo(Position pos)
-        {
-            return GetAvailablePositions()[pos.Row, pos.Column];
-        }
-        
-        public bool IsMovable()
-        {
-            var movements = GetAvailablePositions();
-            for (var i = 0; i < Board.Rows; i++)
-            {
-                for (var j = 0; j < Board.Columns; j++)
-                    if (movements[i, j])
-                        return true;
-            }
-
-            return false;
+            IsFirstMovement = false;
         }
     }
 }

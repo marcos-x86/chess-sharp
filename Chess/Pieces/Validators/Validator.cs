@@ -4,7 +4,6 @@ namespace Chess.Pieces.Validators
 {
     public abstract class Validator
     {
-        private Board Board { get; }
         protected internal Position Position { get; set; }
         protected internal Player Player { get; set; }
         protected internal bool IsFirstMovement { get; set; }
@@ -13,6 +12,8 @@ namespace Chess.Pieces.Validators
         {
             Board = board;
         }
+
+        private Board Board { get; }
 
         public bool CanMoveTo(Position pos)
         {
@@ -29,24 +30,26 @@ namespace Chess.Pieces.Validators
 
         protected bool IsPositionCandidate(Position pos)
         {
+            if (!IsValidPosition(pos)) return false;
             var piece = Board.GetPiece(pos);
-            return IsValidPosition(pos) && (IsFreePosition(pos) || !piece.Player.Color.Equals(Player.Color));
+            return IsFreePosition(pos) || !piece.Player.Color.Equals(Player.Color);
         }
 
         protected bool IsEnemyOnPosition(Position pos)
         {
+            if (!IsValidPosition(pos)) return false;
             var piece = Board.GetPiece(pos);
-            return IsValidPosition(pos) && !IsFreePosition(pos) && !piece.Player.Color.Equals(Player.Color);
+            return !IsFreePosition(pos) && !piece.Player.Color.Equals(Player.Color);
         }
 
         protected bool IsFreePosition(Position pos)
         {
-            return IsValidPosition(pos) && Board.GetPiece(pos) == null;
+            return IsValidPosition(pos) && Board.GetPiece(pos) is null;
         }
 
-        private bool IsValidPosition(Position pos)
+        protected bool IsValidPosition(Position pos)
         {
-            return pos.Row >= 0 && pos.Row < Board.Rows && pos.Column >= 0 && pos.Column < Board.Columns;
+            return pos.Row >= 0 && pos.Row < Board.Dimension && pos.Column >= 0 && pos.Column < Board.Dimension;
         }
     }
 }

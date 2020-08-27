@@ -5,14 +5,10 @@ namespace Chess
     public class Board
     {
         public const int Dimension = 8;
-        public int Rows { get; }
-        public int Columns { get; }
         private readonly Piece[,] _pieces;
 
         public Board()
         {
-            Rows = Dimension;
-            Columns = Dimension;
             _pieces = new Piece[Dimension, Dimension];
         }
 

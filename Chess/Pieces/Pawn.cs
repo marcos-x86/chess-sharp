@@ -2,7 +2,7 @@
 
 namespace Chess.Pieces
 {
-    internal class Pawn : Piece
+    internal class Pawn : Piece, IPromotion
     {
         public Pawn(Player player, Validator validator) : base(player, validator)
         {
@@ -11,6 +11,11 @@ namespace Chess.Pieces
         public override bool[,] GetAvailablePositions()
         {
             return Validator.FindAvailablePositions();
+        }
+
+        public void Promote()
+        {
+            throw new System.NotImplementedException();
         }
 
         public override string ToString()

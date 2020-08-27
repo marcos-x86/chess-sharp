@@ -18,29 +18,37 @@ namespace Chess.Pieces.Validators
             var lowerRightPosition1 = new Position(Position.Row + 1, Position.Column + 2);
             var lowerRightPosition2 = new Position(Position.Row - 2, Position.Column + 1);
 
-            availablePositions[upperLeftPosition1.Row, upperLeftPosition1.Column] =
-                IsPositionCandidate(upperLeftPosition1);
+            if (IsValidPosition(upperLeftPosition1))
+                availablePositions[upperLeftPosition1.Row, upperLeftPosition1.Column] =
+                    IsPositionCandidate(upperLeftPosition1);
 
-            availablePositions[upperLeftPosition2.Row, upperLeftPosition2.Column] =
-                IsPositionCandidate(upperLeftPosition2);
+            if (IsValidPosition(upperLeftPosition2))
+                availablePositions[upperLeftPosition2.Row, upperLeftPosition2.Column] =
+                    IsPositionCandidate(upperLeftPosition2);
 
-            availablePositions[upperRightPosition1.Row, upperRightPosition1.Column] =
-                IsPositionCandidate(upperRightPosition1);
+            if (IsValidPosition(upperRightPosition1))
+                availablePositions[upperRightPosition1.Row, upperRightPosition1.Column] =
+                    IsPositionCandidate(upperRightPosition1);
 
-            availablePositions[upperRightPosition2.Row, upperRightPosition2.Column] =
-                IsPositionCandidate(upperRightPosition2);
+            if (IsValidPosition(upperRightPosition2))
+                availablePositions[upperRightPosition2.Row, upperRightPosition2.Column] =
+                    IsPositionCandidate(upperRightPosition2);
 
-            availablePositions[lowerLeftPosition1.Row, lowerLeftPosition1.Column] =
-                IsPositionCandidate(lowerLeftPosition1);
+            if (IsValidPosition(lowerLeftPosition1))
+                availablePositions[lowerLeftPosition1.Row, lowerLeftPosition1.Column] =
+                    IsPositionCandidate(lowerLeftPosition1);
 
-            availablePositions[lowerLeftPosition2.Row, lowerLeftPosition2.Column] =
-                IsPositionCandidate(lowerLeftPosition2);
+            if (IsValidPosition(lowerLeftPosition2))
+                availablePositions[lowerLeftPosition2.Row, lowerLeftPosition2.Column] =
+                    IsPositionCandidate(lowerLeftPosition2);
 
-            availablePositions[lowerRightPosition1.Row, lowerRightPosition1.Column] =
-                IsPositionCandidate(lowerRightPosition1);
+            if (IsValidPosition(lowerRightPosition1))
+                availablePositions[lowerRightPosition1.Row, lowerRightPosition1.Column] =
+                    IsPositionCandidate(lowerRightPosition1);
 
-            availablePositions[lowerRightPosition2.Row, lowerRightPosition2.Column] =
-                IsPositionCandidate(lowerRightPosition2);
+            if (IsValidPosition(lowerRightPosition2))
+                availablePositions[lowerRightPosition2.Row, lowerRightPosition2.Column] =
+                    IsPositionCandidate(lowerRightPosition2);
 
             return availablePositions;
         }

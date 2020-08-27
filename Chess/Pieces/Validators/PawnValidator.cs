@@ -1,3 +1,5 @@
+using Chess.Constants;
+
 namespace Chess.Pieces.Validators
 {
     public class PawnValidator : Validator
@@ -17,16 +19,20 @@ namespace Chess.Pieces.Validators
                 var diagonalLeftPosition = new Position(Position.Row - 1, Position.Column - 1);
                 var diagonalRightPosition = new Position(Position.Row - 1, Position.Column + 1);
 
-                availablePositions[firstForwardPosition.Row, firstForwardPosition.Column] =
-                    IsFreePosition(forwardPosition) && IsFreePosition(firstForwardPosition) && IsFirstMovement;
+                if (IsValidPosition(firstForwardPosition))
+                    availablePositions[firstForwardPosition.Row, firstForwardPosition.Column] =
+                        IsFreePosition(forwardPosition) && IsFreePosition(firstForwardPosition) && IsFirstMovement;
 
-                availablePositions[forwardPosition.Row, forwardPosition.Column] = IsFreePosition(forwardPosition);
+                if (IsValidPosition(forwardPosition))
+                    availablePositions[forwardPosition.Row, forwardPosition.Column] = IsFreePosition(forwardPosition);
 
-                availablePositions[diagonalLeftPosition.Row, diagonalLeftPosition.Column] =
-                    IsEnemyOnPosition(diagonalLeftPosition);
+                if (IsValidPosition(diagonalLeftPosition))
+                    availablePositions[diagonalLeftPosition.Row, diagonalLeftPosition.Column] =
+                        IsEnemyOnPosition(diagonalLeftPosition);
 
-                availablePositions[diagonalRightPosition.Row, diagonalRightPosition.Column] =
-                    IsEnemyOnPosition(diagonalRightPosition);
+                if (IsValidPosition(diagonalRightPosition))
+                    availablePositions[diagonalRightPosition.Row, diagonalRightPosition.Column] =
+                        IsEnemyOnPosition(diagonalRightPosition);
             }
 
             else
@@ -36,16 +42,20 @@ namespace Chess.Pieces.Validators
                 var diagonalLeftPosition = new Position(Position.Row + 1, Position.Column - 1);
                 var diagonalRightPosition = new Position(Position.Row + 1, Position.Column + 1);
 
-                availablePositions[firstForwardPosition.Row, firstForwardPosition.Column] =
-                    IsFreePosition(forwardPosition) && IsFreePosition(firstForwardPosition) && IsFirstMovement;
+                if (IsValidPosition(firstForwardPosition))
+                    availablePositions[firstForwardPosition.Row, firstForwardPosition.Column] =
+                        IsFreePosition(forwardPosition) && IsFreePosition(firstForwardPosition) && IsFirstMovement;
 
-                availablePositions[forwardPosition.Row, forwardPosition.Column] = IsFreePosition(forwardPosition);
+                if (IsValidPosition(forwardPosition))
+                    availablePositions[forwardPosition.Row, forwardPosition.Column] = IsFreePosition(forwardPosition);
 
-                availablePositions[diagonalLeftPosition.Row, diagonalLeftPosition.Column] =
-                    IsEnemyOnPosition(diagonalLeftPosition);
+                if (IsValidPosition(diagonalLeftPosition))
+                    availablePositions[diagonalLeftPosition.Row, diagonalLeftPosition.Column] =
+                        IsEnemyOnPosition(diagonalLeftPosition);
 
-                availablePositions[diagonalRightPosition.Row, diagonalRightPosition.Column] =
-                    IsEnemyOnPosition(diagonalRightPosition);
+                if (IsValidPosition(diagonalRightPosition))
+                    availablePositions[diagonalRightPosition.Row, diagonalRightPosition.Column] =
+                        IsEnemyOnPosition(diagonalRightPosition);
             }
 
             return availablePositions;

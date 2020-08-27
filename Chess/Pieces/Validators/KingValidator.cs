@@ -18,25 +18,33 @@ namespace Chess.Pieces.Validators
             var lowerLeftDiagonalPosition = new Position(Position.Row + 1, Position.Column - 1);
             var lowerRightDiagonalPosition = new Position(Position.Row + 1, Position.Column + 1);
 
-            availablePositions[upperRightDiagonalPosition.Row, upperRightDiagonalPosition.Column] =
-                IsPositionCandidate(upperRightDiagonalPosition);
+            if (IsValidPosition(upperRightDiagonalPosition))
+                availablePositions[upperRightDiagonalPosition.Row, upperRightDiagonalPosition.Column] =
+                    IsPositionCandidate(upperRightDiagonalPosition);
 
-            availablePositions[upperLeftDiagonalPosition.Row, upperLeftDiagonalPosition.Column] =
-                IsPositionCandidate(upperLeftDiagonalPosition);
+            if (IsValidPosition(upperLeftDiagonalPosition))
+                availablePositions[upperLeftDiagonalPosition.Row, upperLeftDiagonalPosition.Column] =
+                    IsPositionCandidate(upperLeftDiagonalPosition);
 
-            availablePositions[lowerLeftDiagonalPosition.Row, lowerLeftDiagonalPosition.Column] =
-                IsPositionCandidate(lowerLeftDiagonalPosition);
+            if (IsValidPosition(lowerLeftDiagonalPosition))
+                availablePositions[lowerLeftDiagonalPosition.Row, lowerLeftDiagonalPosition.Column] =
+                    IsPositionCandidate(lowerLeftDiagonalPosition);
 
-            availablePositions[lowerRightDiagonalPosition.Row, lowerRightDiagonalPosition.Column] =
-                IsPositionCandidate(lowerRightDiagonalPosition);
+            if (IsValidPosition(lowerRightDiagonalPosition))
+                availablePositions[lowerRightDiagonalPosition.Row, lowerRightDiagonalPosition.Column] =
+                    IsPositionCandidate(lowerRightDiagonalPosition);
 
-            availablePositions[upperPosition.Row, upperPosition.Column] = IsPositionCandidate(upperPosition);
+            if (IsValidPosition(upperPosition))
+                availablePositions[upperPosition.Row, upperPosition.Column] = IsPositionCandidate(upperPosition);
 
-            availablePositions[lowerPosition.Row, lowerPosition.Column] = IsPositionCandidate(lowerPosition);
+            if (IsValidPosition(lowerPosition))
+                availablePositions[lowerPosition.Row, lowerPosition.Column] = IsPositionCandidate(lowerPosition);
 
-            availablePositions[rightPosition.Row, rightPosition.Column] = IsPositionCandidate(rightPosition);
+            if (IsValidPosition(rightPosition))
+                availablePositions[rightPosition.Row, rightPosition.Column] = IsPositionCandidate(rightPosition);
 
-            availablePositions[leftPosition.Row, leftPosition.Column] = IsPositionCandidate(leftPosition);
+            if (IsValidPosition(leftPosition))
+                availablePositions[leftPosition.Row, leftPosition.Column] = IsPositionCandidate(leftPosition);
 
             return availablePositions;
         }

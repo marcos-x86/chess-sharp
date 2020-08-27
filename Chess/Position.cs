@@ -16,19 +16,12 @@ namespace Chess
         public Position(string column, int row)
         {
             Row = 8 - row;
-            Column = char.Parse(column) - 'a';
+            Column = char.Parse(column) - 97;
         }
 
         public override string ToString()
         {
-            return Row + ", " + Column;
-        }
-
-
-        public void SetValues(int x, int y)
-        {
-            Row = x;
-            Column = y;
+            return $"{8 - Row}{(char) (Column + 97)}";
         }
     }
 }
